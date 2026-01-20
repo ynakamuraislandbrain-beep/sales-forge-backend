@@ -1,0 +1,44 @@
+{
+    "analysis_prompt": "You are a sales coach... Context: {context} Statement: {text} ...",
+    "feedback_prompt": "You are an experienced sales coach... Scenario: {scenario} Goals: {goals} Transcript: {transcript} ...",
+    "summarize_prompt": "Summarize this... {text}",
+    "prompt_builder": {
+        "persona_section": "=== YOUR IDENTITY ===\n{template}\n...",
+        "prior_context_section": "=== PRIOR RELATIONSHIP CONTEXT ===\n...",
+        "scenario_section": "=== SCENARIO CONTEXT ===\n...",
+        "state_section": "=== CURRENT CONVERSATION STATE ===\n...",
+        "behavior_directives_section": "=== BEHAVIOR DIRECTIVES ===\n...",
+        "skepticism_rules": {
+            "high": "SKEPTICISM: HIGH...",
+            "moderate": "SKEPTICISM: MODERATE...",
+            "low": "SKEPTICISM: LOW..."
+        },
+        "patience_rules": {
+            "low": "PATIENCE: LOW...",
+            "moderate": "PATIENCE: MODERATE...",
+            "high": "PATIENCE: HIGH..."
+        },
+        "interrupt_rules": {
+            "frequent": "INTERRUPTIONS: FREQUENT...",
+            "occasional": "INTERRUPTIONS: OCCASIONAL...",
+            "rare": "INTERRUPTIONS: RARE..."
+        },
+        "agreeableness_rules": {
+            "low": "AGREEABLENESS: LOW...",
+            "moderate": "AGREEABLENESS: MODERATE...",
+            "high": "AGREEABLENESS: HIGH..."
+        },
+        "adaptive_instructions": {
+            "early": "Early in conversation...",
+            "mid": "Mid-conversation...",
+            "late": "Late in conversation...",
+            "low_rapport": "Low rapport...",
+            "high_rapport": "Good rapport...",
+            "nervous": "Rep seems nervous...",
+            "unclear_value": "Rep hasn't shown clear value..."
+        },
+        "hidden_instructions_section": "=== HIDDEN ADAPTIVE INSTRUCTIONS ===\n...",
+        "context_injection": "[UPDATED STATE]\n...",
+        "rolling_summary": "Summarize the following..."
+    }
+}
