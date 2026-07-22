@@ -59,13 +59,13 @@ async def get_user(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found",
+            detail="ユーザーが見つかりません",
         )
 
     if current_user.role == UserRole.REP.value and current_user.id != user_id:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Cannot view other users",
+            detail="他のユーザーの情報は表示できません",
         )
 
     return UserResponse.model_validate(user)
@@ -89,7 +89,7 @@ async def update_user(
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found",
+            detail="ユーザーが見つかりません",
         )
 
     can_update = (
@@ -104,7 +104,7 @@ async def update_user(
     if not can_update:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Cannot update this user",
+            detail="このユーザーは更新できません",
         )
 
     update_dict = update_data.model_dump(exclude_unset=True)

@@ -10,10 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.db import get_db
-from app.models.database import Session, Scenario, Transcript, Feedback, User, ConversationState
-
-DEMO_EMAIL = "demo@salesforge.app"
-DEMO_DAILY_SESSION_LIMIT = 10
+from app.models.database import Session, Scenario, Transcript, User
 from app.models.schemas import (
     SessionCreate,
     SessionResponse,
@@ -26,6 +23,9 @@ from app.models.schemas import (
     ErrorResponse,
 )
 from app.api.routes.auth import get_current_user
+
+DEMO_EMAIL = "demo@salesforge.app"
+DEMO_DAILY_SESSION_LIMIT = 10
 
 router = APIRouter()
 
@@ -137,7 +137,7 @@ async def get_session(
     if not session:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Session not found",
+            detail="セッションが見つかりません",
         )
 
     if session.user_id != current_user.id and current_user.role == "rep":
@@ -244,7 +244,7 @@ async def create_session(
     result = await db.execute(
         select(Scenario).where(
             Scenario.id == session_data.scenario_id,
-            Scenario.is_active == True,
+            Scenario.is_active,
         )
     )
     scenario = result.scalar_one_or_none()
@@ -252,7 +252,7 @@ async def create_session(
     if not scenario:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Scenario not found or not active",
+            detail="シナリオが見つかりません or not active",
         )
 
     if scenario.is_locked:
@@ -346,7 +346,7 @@ async def start_session(
     if not session:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Session not found",
+            detail="セッションが見つかりません",
         )
 
     if session.status != "pending":
@@ -387,7 +387,7 @@ async def end_session(
     if not session:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Session not found",
+            detail="セッションが見つかりません",
         )
 
     if session.status not in ("pending", "in_progress"):

@@ -20,7 +20,6 @@ from app.models.database import (
     Feedback,
     SessionAnalytics,
     ConversationState,
-    User,
 )
 from app.models.schemas import WSMessageType, WSServerMessage
 from app.core.llm.orchestrator import ConversationOrchestrator

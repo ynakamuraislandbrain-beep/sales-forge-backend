@@ -8,10 +8,7 @@ import structlog
 from typing import Annotated, Optional
 from uuid import UUID
 
-import httpx
 import jwt
-from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
-from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from jwt import PyJWKClient, ExpiredSignatureError, InvalidTokenError
@@ -161,7 +158,7 @@ async def require_manager(
     if current_user.role not in (UserRole.MANAGER.value, UserRole.ADMIN.value):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Manager or admin access required",
+            detail="マネージャーまたは管理者の権限が必要です",
         )
     return current_user
 
@@ -173,7 +170,7 @@ async def require_admin(
     if current_user.role != UserRole.ADMIN.value:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Admin access required",
+            detail="管理者の権限が必要です",
         )
     return current_user
 

@@ -5,7 +5,7 @@ from uuid import UUID
 from decimal import Decimal
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import select, func, and_, case
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from app.db import get_db
@@ -43,13 +43,13 @@ async def get_session_analytics(
     if not session:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Session not found",
+            detail="セッションが見つかりません",
         )
 
     if session.user_id != current_user.id and current_user.role == UserRole.REP.value:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
-            detail="Cannot view analytics for this session",
+            detail="このセッションのアナリティクスは表示できません",
         )
 
     result = await db.execute(
@@ -149,7 +149,7 @@ async def get_user_performance_summary(
             func.avg(SessionAnalytics.talk_listen_ratio).label("avg_talk_listen"),
             func.avg(SessionAnalytics.objection_handling_score).label("avg_objection"),
             func.avg(SessionAnalytics.confidence_score).label("avg_confidence"),
-            func.count(SessionAnalytics.id).filter(SessionAnalytics.goal_completion == True).label("goals_met"),
+            func.count(SessionAnalytics.id).filter(SessionAnalytics.goal_completion).label("goals_met"),
             func.count(SessionAnalytics.id).label("total_analytics"),
         )
         .join(Session, Session.id == SessionAnalytics.session_id)

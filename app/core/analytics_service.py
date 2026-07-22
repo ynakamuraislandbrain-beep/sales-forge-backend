@@ -5,7 +5,7 @@ from decimal import Decimal
 from typing import List, Optional
 from uuid import UUID
 
-from sqlalchemy import select, func, and_, case
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.database import (
@@ -16,7 +16,6 @@ from app.models.database import (
     UserSkillScores,
     MilestoneDefinition,
     UserMilestone,
-    Feedback,
 )
 from app.models.schemas import (
     SkillScores,
@@ -63,7 +62,7 @@ class AnalyticsService:
                 func.avg(SessionAnalytics.question_quality_score).label("avg_question"),
                 func.avg(SessionAnalytics.persuasiveness_score).label("avg_persuasive"),
                 func.avg(SessionAnalytics.confidence_score).label("avg_confidence"),
-                func.count(SessionAnalytics.id).filter(SessionAnalytics.goal_completion == True).label("goals_met"),
+                func.count(SessionAnalytics.id).filter(SessionAnalytics.goal_completion).label("goals_met"),
                 func.count(SessionAnalytics.id).label("total_sessions"),
                 rapport_subquery.label("avg_rapport")
             )
@@ -157,7 +156,7 @@ class AnalyticsService:
     ) -> List[Milestone]:
         """Get milestone progress for a user (Optimized)."""
         result = await db.execute(
-            select(MilestoneDefinition).where(MilestoneDefinition.is_active == True)
+            select(MilestoneDefinition).where(MilestoneDefinition.is_active)
         )
         definitions = result.scalars().all()
         if not definitions:
@@ -301,8 +300,8 @@ class AnalyticsService:
                 select(Scenario)
                 .where(
                     Scenario.type.in_(scenario_types),
-                    Scenario.is_active == True,
-                    Scenario.is_locked == False,
+                    Scenario.is_active,
+                    ~Scenario.is_locked,
                 )
                 .limit(1)
             )

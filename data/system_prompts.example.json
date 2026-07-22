@@ -1,44 +1,44 @@
 {
-    "analysis_prompt": "You are a sales coach... Context: {context} Statement: {text} ...",
-    "feedback_prompt": "You are an experienced sales coach... Scenario: {scenario} Goals: {goals} Transcript: {transcript} ...",
-    "summarize_prompt": "Summarize this... {text}",
+    "analysis_prompt": "あなたはセールスコーチです... コンテキスト: {context} 発言: {text} ...",
+    "feedback_prompt": "あなたは経験豊富なセールスコーチです... シナリオ: {scenario} 目標: {goals} トランスクリプト: {transcript} ...",
+    "summarize_prompt": "これを要約してください... {text}",
     "prompt_builder": {
-        "persona_section": "=== YOUR IDENTITY ===\n{template}\n...",
-        "prior_context_section": "=== PRIOR RELATIONSHIP CONTEXT ===\n...",
-        "scenario_section": "=== SCENARIO CONTEXT ===\n...",
-        "state_section": "=== CURRENT CONVERSATION STATE ===\n...",
-        "behavior_directives_section": "=== BEHAVIOR DIRECTIVES ===\n...",
+        "persona_section": "=== あなたのアイデンティティ ===\n{template}\n...",
+        "prior_context_section": "=== 過去の関係のコンテキスト ===\n...",
+        "scenario_section": "=== シナリオのコンテキスト ===\n...",
+        "state_section": "=== 現在の会話の状態 ===\n...",
+        "behavior_directives_section": "=== 行動の指示 ===\n...",
         "skepticism_rules": {
-            "high": "SKEPTICISM: HIGH...",
-            "moderate": "SKEPTICISM: MODERATE...",
-            "low": "SKEPTICISM: LOW..."
+            "high": "懐疑度: 高...",
+            "moderate": "懐疑度: 中...",
+            "low": "懐疑度: 低..."
         },
         "patience_rules": {
-            "low": "PATIENCE: LOW...",
-            "moderate": "PATIENCE: MODERATE...",
-            "high": "PATIENCE: HIGH..."
+            "low": "忍耐力: 低...",
+            "moderate": "忍耐力: 中...",
+            "high": "忍耐力: 高..."
         },
         "interrupt_rules": {
-            "frequent": "INTERRUPTIONS: FREQUENT...",
-            "occasional": "INTERRUPTIONS: OCCASIONAL...",
-            "rare": "INTERRUPTIONS: RARE..."
+            "frequent": "割り込み: 頻繁...",
+            "occasional": "割り込み: 時々...",
+            "rare": "割り込み: 稀..."
         },
         "agreeableness_rules": {
-            "low": "AGREEABLENESS: LOW...",
-            "moderate": "AGREEABLENESS: MODERATE...",
-            "high": "AGREEABLENESS: HIGH..."
+            "low": "協調性: 低...",
+            "moderate": "協調性: 中...",
+            "high": "協調性: 高..."
         },
         "adaptive_instructions": {
-            "early": "Early in conversation...",
-            "mid": "Mid-conversation...",
-            "late": "Late in conversation...",
-            "low_rapport": "Low rapport...",
-            "high_rapport": "Good rapport...",
-            "nervous": "Rep seems nervous...",
-            "unclear_value": "Rep hasn't shown clear value..."
+            "early": "会話の序盤...",
+            "mid": "会話の中盤...",
+            "late": "会話の終盤...",
+            "low_rapport": "ラポールが低い...",
+            "high_rapport": "ラポールが高い...",
+            "nervous": "担当者が緊張しているようです...",
+            "unclear_value": "担当者が明確な価値を示していません..."
         },
-        "hidden_instructions_section": "=== HIDDEN ADAPTIVE INSTRUCTIONS ===\n...",
-        "context_injection": "[UPDATED STATE]\n...",
-        "rolling_summary": "Summarize the following..."
+        "hidden_instructions_section": "=== 隠された適応的な指示 ===\n...",
+        "context_injection": "[更新された状態]\n...",
+        "rolling_summary": "以下を要約してください..."
     }
 }

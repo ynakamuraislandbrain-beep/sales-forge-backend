@@ -53,7 +53,7 @@ async def get_persona(
     if not persona:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Persona not found",
+            detail="ペルソナが見つかりません",
         )
 
     return PersonaResponse.model_validate(persona)
@@ -107,7 +107,7 @@ async def update_persona(
     if not persona:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Persona not found",
+            detail="ペルソナが見つかりません",
         )
 
     update_dict = update_data.model_dump(exclude_unset=True)
@@ -143,7 +143,7 @@ async def delete_persona(
     if not persona:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Persona not found",
+            detail="ペルソナが見つかりません",
         )
 
     await db.delete(persona)

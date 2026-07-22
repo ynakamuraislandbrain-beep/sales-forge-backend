@@ -42,11 +42,11 @@ async def list_scenarios(
     query = (
         select(Scenario)
         .options(selectinload(Scenario.persona))
-        .where(Scenario.is_active == True)
+        .where(Scenario.is_active)
     )
 
     if not include_locked:
-        query = query.where(Scenario.is_locked == False)
+        query = query.where(~Scenario.is_locked)
 
     if category:
         query = query.where(Scenario.category == category.value)
@@ -110,7 +110,7 @@ async def get_scenario(
     if not scenario:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Scenario not found",
+            detail="シナリオが見つかりません",
         )
 
     persona_summary = None
@@ -232,7 +232,7 @@ async def update_scenario(
     if not scenario:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Scenario not found",
+            detail="シナリオが見つかりません",
         )
 
     update_dict = update_data.model_dump(exclude_unset=True)
@@ -294,7 +294,7 @@ async def delete_scenario(
     if not scenario:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Scenario not found",
+            detail="シナリオが見つかりません",
         )
 
     scenario.is_active = False

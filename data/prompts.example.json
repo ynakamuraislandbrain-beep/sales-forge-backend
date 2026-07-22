@@ -1,16 +1,16 @@
 {
     "personas": [
         {
-            "name": "Persona Name",
-            "title": "Title",
-            "company": "Company",
-            "industry": "Industry",
+            "name": "ペルソナ名",
+            "title": "役職",
+            "company": "会社名",
+            "industry": "業界",
             "traits": [
-                "trait1",
-                "trait2"
+                "特徴1",
+                "特徴2"
             ],
-            "default_mood": "neutral",
-            "system_prompt_template": "You are...",
+            "default_mood": "ニュートラル",
+            "system_prompt_template": "あなたは...",
             "behavior_config": {
                 "base_skepticism": 0.5,
                 "base_patience": 0.5,
@@ -22,8 +22,8 @@
     ],
     "scenarios": [
         {
-            "persona_name": "Persona Name",
-            "name": "Scenario Name",
+            "persona_name": "ペルソナ名",
+            "name": "シナリオ名",
             "type": "cold_call",
             "difficulty": "medium",
             "category": "outbound",
@@ -31,13 +31,13 @@
             "scenario_rules": "...",
             "success_criteria": {
                 "primary_goals": [
-                    "goal1"
+                    "目標1"
                 ],
                 "secondary_goals": [
-                    "goal2"
+                    "目標2"
                 ],
                 "failure_conditions": [
-                    "failure1"
+                    "失敗条件1"
                 ]
             },
             "book_rate": 0.1
